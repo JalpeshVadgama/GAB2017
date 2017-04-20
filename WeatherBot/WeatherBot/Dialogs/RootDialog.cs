@@ -21,7 +21,7 @@ namespace WeatherBot.Dialogs
             var activity = await result as Activity;
 
             var helper = new OpenWeatherAPIHelper();
-            var weatherInforamion = helper.GetWeatherData(activity.Text ?? string.Empty);
+            var weatherInforamion = await helper.GetWeatherDataAsync(activity.Text ?? string.Empty);
             await context.PostAsync(weatherInforamion.visibility.ToString());
 
             //// calculate something for us to return

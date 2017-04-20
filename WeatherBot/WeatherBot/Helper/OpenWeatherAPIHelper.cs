@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System.Net;
+using System.Threading.Tasks;
 using WeatherBot.Model;
 
 namespace WeatherBot.Helper
@@ -8,15 +9,14 @@ namespace WeatherBot.Helper
     {
         readonly string APIKey = "Your api key";
 
-        public WeatherInformation GetWeatherData(string city)
+        public async Task<WeatherInformation> GetWeatherDataAsync(string city)
         {
-            var url = $"http://api.openweathermap.org/data/2.5/weather?q={city}&mode=json&units=metric&APPID={this.APIKey}";
-
             using (WebClient client = new WebClient())
             {
-                var apiResponse = client.DownloadString(url);
-                var weatherInformation = JsonConvert.DeserializeObject<WeatherInformation>(apiResponse);
-                return weatherInformation;
+                var url = $"http://api.openweathermap.org/data/2.5/weather?q={city}&mode=json&units=metric&APPID={this.APIKey}";
+                var uri = new System.Uri(url);
+                var apiResponse = await client.DownloadStringTaskAsync(uri);
+                return JsonConvert.DeserializeObject<WeatherInformation>(apiResponse);
             }
         }
     }
