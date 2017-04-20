@@ -1,7 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Bot.Builder.Dialogs;
+﻿using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Connector;
+using System;
+using System.Threading.Tasks;
+using WeatherBot.Helper;
 
 namespace WeatherBot.Dialogs
 {
@@ -19,11 +20,16 @@ namespace WeatherBot.Dialogs
         {
             var activity = await result as Activity;
 
-            // calculate something for us to return
-            int length = (activity.Text ?? string.Empty).Length;
+            var helper = new OpenWeatherAPIHelper();
+            helper.GetWeatherData(activity.Text ?? string.Empty);
 
-            // return our reply to the user
-            await context.PostAsync($"You sent {activity.Text} which was {length} characters");
+            await context.PostAsync(helper.Repsonse);
+
+            //// calculate something for us to return
+            //int length = (activity.Text ?? string.Empty).Length;
+
+            //// return our reply to the user
+            //await context.PostAsync($"You sent {activity.Text} which was {length} characters");
 
             context.Wait(MessageReceivedAsync);
         }
