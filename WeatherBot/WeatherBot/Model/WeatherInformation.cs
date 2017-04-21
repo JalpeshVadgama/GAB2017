@@ -20,21 +20,21 @@ namespace WeatherBot.Model
     public class TemperatureAndHumidity
     {
         public double temp { get; set; }
-        public int pressure { get; set; }
-        public int humidity { get; set; }
-        public int temp_min { get; set; }
-        public int temp_max { get; set; }
+        public double pressure { get; set; }
+        public double humidity { get; set; }
+        public double temp_min { get; set; }
+        public double temp_max { get; set; }
     }
 
     public class Wind
     {
         public double speed { get; set; }
-        public int deg { get; set; }
+        public double deg { get; set; }
     }
 
     public class Clouds
     {
-        public int all { get; set; }
+        public double all { get; set; }
     }
 
     public class Sys
@@ -43,8 +43,8 @@ namespace WeatherBot.Model
         public int id { get; set; }
         public double message { get; set; }
         public string country { get; set; }
-        public int sunrise { get; set; }
-        public int sunset { get; set; }
+        public double sunrise { get; set; }
+        public double sunset { get; set; }
     }
 
     public class WeatherInformation
@@ -53,13 +53,13 @@ namespace WeatherBot.Model
         public List<Weather> weather { get; set; }
         public string @base { get; set; }
         public TemperatureAndHumidity main { get; set; }
-        public int visibility { get; set; }
+        public double visibility { get; set; }
         public Wind wind { get; set; }
         public Clouds clouds { get; set; }
-        public int dt { get; set; }
+        public double dt { get; set; }
         public Sys sys { get; set; }
-        public int id { get; set; }
+        public double id { get; set; }
         public string name { get; set; }
-        public int cod { get; set; }
+        public double cod { get; set; }
     }
 }
