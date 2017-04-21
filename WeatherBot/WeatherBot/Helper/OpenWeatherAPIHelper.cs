@@ -7,13 +7,14 @@ namespace WeatherBot.Helper
 {
     public class OpenWeatherAPIHelper
     {
-        readonly string APIKey = "Your api key";
+
 
         public async Task<WeatherInformation> GetWeatherDataAsync(string city)
         {
+            var APIKey = "Your API Key";
             using (WebClient client = new WebClient())
             {
-                var url = $"http://api.openweathermap.org/data/2.5/weather?q={city}&mode=json&units=metric&APPID={this.APIKey}";
+                var url = $"http://api.openweathermap.org/data/2.5/weather?q={city}&mode=json&units=metric&APPID={APIKey}";
                 var uri = new System.Uri(url);
                 var apiResponse = await client.DownloadStringTaskAsync(uri);
                 return JsonConvert.DeserializeObject<WeatherInformation>(apiResponse);
