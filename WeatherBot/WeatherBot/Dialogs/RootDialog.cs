@@ -21,7 +21,14 @@ namespace WeatherBot.Dialogs
         {
             var activity = await result as Activity;
 
-            var weatherInforamion = await OpenWeatherAPIHelper.GetWeatherDataAsync(activity.Text ?? string.Empty);
+            //var city = activity.Text ?? string.Empty;
+
+            var query = activity.Text ?? string.Empty;
+            var luisInformaion = await LuisHelper.ParseTextAsync(query);
+            var city = GetCityName(luisInformaion);
+
+
+            var weatherInforamion = await OpenWeatherAPIHelper.GetWeatherDataAsync(city);
             var weatherstring = GetWeather(weatherInforamion);
             await context.PostAsync(weatherstring);
 
@@ -40,6 +47,22 @@ namespace WeatherBot.Dialogs
             weatherStringBuilder.AppendLine($"Humidity will be:  {weatherInformation.main.humidity} percent\r\n");
 
             return weatherStringBuilder.ToString();
+        }
+
+        private static string GetCityName(LuisInformation luisInformation)
+        {
+            var cityName = string.Empty;
+
+            if (luisInformation != null && luisInformation.intents.Count > 0)
+            {
+                switch (luisInformation.intents[0].intent.ToLower())
+                {
+                    case "weather":
+                        cityName = luisInformation.entities[0].entity;
+                        break;
+                }
+            }
+            return cityName;
         }
     }
 }
