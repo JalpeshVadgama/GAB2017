@@ -7,9 +7,7 @@ namespace WeatherBot.Helper
 {
     public class OpenWeatherAPIHelper
     {
-
-
-        public async Task<WeatherInformation> GetWeatherDataAsync(string city)
+        public async static Task<WeatherInformation> GetWeatherDataAsync(string city)
         {
             var APIKey = "Your API Key";
             using (WebClient client = new WebClient())

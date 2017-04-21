@@ -21,8 +21,7 @@ namespace WeatherBot.Dialogs
         {
             var activity = await result as Activity;
 
-            var helper = new OpenWeatherAPIHelper();
-            var weatherInforamion = await helper.GetWeatherDataAsync(activity.Text ?? string.Empty);
+            var weatherInforamion = await OpenWeatherAPIHelper.GetWeatherDataAsync(activity.Text ?? string.Empty);
             var weatherstring = GetWeather(weatherInforamion);
             await context.PostAsync(weatherstring);
 
