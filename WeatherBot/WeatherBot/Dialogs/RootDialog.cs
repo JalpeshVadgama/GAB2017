@@ -34,10 +34,10 @@ namespace WeatherBot.Dialogs
             var weatherStringBuilder = new System.Text.StringBuilder();
 
             weatherStringBuilder.AppendLine($"Following is weather forcast for {weatherInformation.name}\r\n");
-            weatherStringBuilder.AppendLine($"Current temperature is:  {weatherInformation.main.temp}\r\n");
-            weatherStringBuilder.AppendLine($"Minimum Tempearature will be:  {weatherInformation.main.temp_min}\r\n");
-            weatherStringBuilder.AppendLine($"Maximum Tempearature will be:  {weatherInformation.main.temp_max}\r\n");
-            weatherStringBuilder.AppendLine($"Wind Speed will be:  {weatherInformation.wind.speed} Kilo meters\r\n");
+            weatherStringBuilder.AppendLine($"Current temperature is:  {weatherInformation.main.temp} Fahrenheit\r\n");
+            weatherStringBuilder.AppendLine($"Minimum Tempearature will be:  {weatherInformation.main.temp_min} Fahrenheit\r\n");
+            weatherStringBuilder.AppendLine($"Maximum Tempearature will be:  {weatherInformation.main.temp_max} Fahrenheit\r\n");
+            weatherStringBuilder.AppendLine($"Wind Speed will be:  {weatherInformation.wind.speed} Miles/hr\r\n");
             weatherStringBuilder.AppendLine($"Humidity will be:  {weatherInformation.main.humidity} percent\r\n");
 
             return weatherStringBuilder.ToString();

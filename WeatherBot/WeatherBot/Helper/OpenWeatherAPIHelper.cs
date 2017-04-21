@@ -14,7 +14,7 @@ namespace WeatherBot.Helper
             var APIKey = "Your API Key";
             using (WebClient client = new WebClient())
             {
-                var url = $"http://api.openweathermap.org/data/2.5/weather?q={city}&mode=json&units=metric&APPID={APIKey}";
+                var url = $"http://api.openweathermap.org/data/2.5/weather?q={city}&mode=json&units=imperial&APPID={APIKey}";
                 var uri = new System.Uri(url);
                 var apiResponse = await client.DownloadStringTaskAsync(uri);
                 return JsonConvert.DeserializeObject<WeatherInformation>(apiResponse);
